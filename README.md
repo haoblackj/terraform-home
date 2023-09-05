@@ -1,5 +1,6 @@
 # terraform-home
 1.  Terraformのインストール
+`https://developer.hashicorp.com/terraform/downloads`
 
 1.  proxmoxのトークンIDとトークンシークレット、APIURLをBitwardenから取得し、下記のコマンドで環境変数に投入する
 ```
