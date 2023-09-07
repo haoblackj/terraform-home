@@ -1,8 +1,13 @@
 # terraform-home
 1.  Terraformのインストール
-`https://developer.hashicorp.com/terraform/downloads`
+```
+git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
+tfenv install 1.3.9
+tfenv use 1.3.9
+terraform -v
+```
 
-1.  proxmoxのトークンIDとトークンシークレット、APIURLをBitwardenから取得し、下記のコマンドで環境変数に投入する
+1.  proxmoxのトークンIDとトークンシークレット、APIURLをBitwardenから取得し、変数定義ファイルを作成する
 ```
 export PM_API_TOKEN_ID='<トークンID>'
 export PM_API_TOKEN_SECRET='<トークンシークレット>'
