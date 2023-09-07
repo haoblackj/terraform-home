@@ -1,4 +1,5 @@
 variable "username" {}
+variable "hostname" {}
 variable "public_key" {}
 variable "cores" {
   default = "8"
@@ -38,7 +39,7 @@ provider "proxmox" {
 }
 
 resource "proxmox_vm_qemu" "ubuntu_22_04" {
-  name        = "ubuntu-22.04"
+  name        = var.hostname
   target_node = "pve04"
   clone       = "ubuntu-22.04a"
   os_type     = "cloud-init"
