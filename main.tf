@@ -41,7 +41,7 @@ provider "proxmox" {
 resource "proxmox_vm_qemu" "ubuntu_22_04" {
   name        = var.hostname
   target_node = "pve04"
-  clone       = "ubuntu-22.04a"
+  clone       = "Ubuntu-22.04-cloud"
   os_type     = "cloud-init"
   boot        = "order=scsi0"
   cores       = var.cores
@@ -50,15 +50,18 @@ resource "proxmox_vm_qemu" "ubuntu_22_04" {
     storage = "local-lvm"
     type    = "scsi"
     size    = "${var.disk_size}G"
+    ssd     = 1
   }
+  scsihw = "virtio-scsi-pci"
   network {
     model    = "virtio"
     bridge   = "vmbr0"
     firewall = false
   }
-  ipconfig0 = "ip=${var.ip_address}/24,gw=${var.gw_address}"
-  ciuser    = var.username
-  sshkeys   = <<EOF
+  ipconfig0  = "ip=${var.ip_address}/24,gw=${var.gw_address}"
+  ciuser     = var.username
+  agent = 1
+  sshkeys    = <<EOF
 ${var.public_key}
 EOF
 }
